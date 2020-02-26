@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.8)
+
 project(hpp_skel LANGUAGES CXX)
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -12,10 +14,10 @@ option(WERROR "Add -Werror flag to build (turns warnings into errors)" ON)
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(OPTIMIZATION_FLAGS "-O0 -DDEBUG")
     message("-- Configuring debug build")
-else()
+else ()
     set(OPTIMIZATION_FLAGS "-O3 -DNDEBUG")
     message("-- Configuring release build")
-endif()
+endif ()
 
 # Enable extra warnings to adhere to https://github.com/mapbox/cpp/issues/37
 set(DESIRED_WARNINGS "-Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wno-error=unused-variable -Wshadow -Wfloat-equal")
@@ -26,7 +28,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OPTIMIZATION_FLAGS} -D_GLIBCXX_USE_CXX
 
 if (WERROR)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
-endif()
+endif ()
 
 # mason_use is a mason function within the mason.cmake file and provides ready-to-go vars, like "STATIC_LIBS" and "INCLUDE_DIRS"
 mason_use(catch VERSION 1.9.6 HEADER_ONLY)
@@ -45,6 +47,7 @@ add_executable(unit-tests ${TEST_SOURCES})
 
 # libbenchmark.a supports threads and therefore needs pthread support
 find_package(Threads REQUIRED)
+
 file(GLOB BENCH_SOURCES bench/*.cpp)
 add_executable(bench-tests ${BENCH_SOURCES})
 
