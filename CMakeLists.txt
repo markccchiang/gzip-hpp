@@ -48,4 +48,4 @@ add_executable(bench-tests ${BENCH_SOURCES})
 
 # link zlib static library to the unit-tests binary so the tests know where to find the zlib impl code
 target_link_libraries(unit-tests ${ZLIB_LIBRARIES} Catch2::Catch2)
-target_link_libraries(bench-tests benchmark::benchmark ${CMAKE_THREAD_LIBS_INIT} ${ZLIB_LIBRARIES} Catch2::Catch2)
+target_link_libraries(bench-tests benchmark::benchmark ${CMAKE_THREAD_LIBS_INIT} ${ZLIB_LIBRARIES})
